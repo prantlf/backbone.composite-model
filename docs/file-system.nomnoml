@@ -1,0 +1,26 @@
+#direction: right
+#padding: 12
+
+[FileModel|
+  +id: integer|
+  +name: string|
+  +parent: FolderModel|
+  +versions: VersionCollection
+]
+
+[FolderModel|
+  +id: integer|
+  +name: string
+]
+
+[VersionCollection]
+
+[VersionModel|
+  +size: integer
+]
+
+[FileModel] +-> 1 [FolderModel]
+
+[FileModel] +-> 1 [VersionCollection]
+
+[VersionCollection] +-> 1..N [VersionModel]

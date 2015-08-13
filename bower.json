@@ -1,0 +1,20 @@
+{
+  "name": "backbone.composite-model",
+  "main": "backbone.composite-model.js",
+  "dependencies": {
+    "backbone": ">=1.0.0",
+    "jquery": ">=1.4.0",
+    "underscore": ">=1.6.0"
+  },
+  "ignore": [
+    "docs",
+    "examples",
+    "test",
+    "*.yml",
+    "*.md",
+    ".*",
+    "karma.*",
+    "component.json",
+    "package.json"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "backbone.composite-model",
+  "version": "0.1.0",
+  "description": "Supports composite Backbone.Model objects",
+  "url": "https://github.com/prantlf/backbone.composite-model",
+  "author": "Ferdinand Prantl <prantlf@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/backbone.composite-model.git"
+  },
+  "keywords": [
+    "model",
+    "backbone",
+    "composite"
+  ],
+  "dependencies": {
+    "backbone": ">=1.0.0",
+    "jquery": "^2.1.4",
+    "underscore": ">=1.6.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.3",
+    "docco": "^0.7.0",
+    "eslint": "^1.1.0",
+    "karma": "^0.13.9",
+    "karma-coverage": "^0.5.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-qunit": "^0.1.5",
+    "karma-requirejs": "~0.2.2",
+    "nomnoml-cli": "~0.2.1",
+    "qunit": "~0.7.6",
+    "qunitjs": "^1.18.0",
+    "requirejs": "~2.1.20",
+    "uglify-js": "^2.4.24"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",
+    "doc": "./node_modules/.bin/nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && ./node_modules/.bin/nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && ./node_modules/.bin/nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && ./node_modules/.bin/docco backbone.composite-model.js",
+    "test": "./node_modules/.bin/eslint backbone.composite-model.js test/*.js examples/file-system/*.js && ./node_modules/karma/bin/karma start karma-global.conf.js  && ./node_modules/karma/bin/karma start karma-amd.conf.js ./node_modules/.bin/qunit -c backbone.composite-model.js -t test/tests.js",
+    "post_coverage": "./node_modules/.bin/coveralls test/coverage/lcov.info"
+  },
+  "main": "backbone.composite-model.js",
+  "files": [
+    "backbone.composite-model.js",
+    "backbone.composite-model.min.js",
+    "backbone.composite-model.min.map",
+    "LICENSE"
+  ]
+}

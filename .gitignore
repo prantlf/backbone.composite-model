@@ -1,0 +1,5 @@
+.idea
+*.log
+bower_components
+node_modules
+test/coverage

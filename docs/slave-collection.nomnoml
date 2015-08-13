@@ -1,0 +1,32 @@
+#direction: right
+#padding: 12
+
+[MasterModel|
+  +attributes: object literal|
+  +slaves: SlaveCollection
+]
+
+[SlaveCollection|
+  +models: array
+]
+
+[SlaveModel|
+  +attributes: object literal
+]
+
+[SlaveModel] -- [<note>slave attributes: {
+  id: 2,
+  ...
+}]
+
+[MasterModel] +-> 1 [SlaveCollection]
+
+[SlaveCollection] +-> 0..N [SlaveModel]
+
+[MasterModel] -- [<note>master attributes: {
+  id: 1,
+  slaves: \[
+    {id: 2, ...},
+  \],
+  ...
+}]

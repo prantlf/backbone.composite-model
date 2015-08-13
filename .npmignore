@@ -1,0 +1,11 @@
+.coveralls.yml
+.git
+.gitignore
+.editorconfig
+.idea
+.npmignore
+.travis.yml
+*.log
+bower_components
+node_modules
+test

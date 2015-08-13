@@ -1,0 +1,15 @@
+{
+  "name"          : "backbone.composite-model",
+  "version"       : "0.1.0",
+  "description"   : "Supports composite Backbone.Model objects",
+  "keywords"      : ["model", "backbone", "composite"],
+  "repo"          : "prantlf/backbone.composite-model",
+  "dependencies"  : {
+    "jashkenas/backbone"    : "*",
+    "jashkenas/underscore"  : "*",
+    "jquery/jquery"         : "*",
+  },
+  "main"          : "backbone.composite-model.js",
+  "scripts"       : ["backbone.composite-model.js"],
+  "license"       : "MIT"
+}
