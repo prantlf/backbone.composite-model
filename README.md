@@ -374,7 +374,8 @@ git push origin <branch name>
 
 ## Release History
 
- * 2015-08-15   v0.1.0   Initial release
+ * 2015-08-14   v0.1.1   Fix documentation and Travis CI build
+ * 2015-08-14   v0.1.0   Initial release
 
 ## License
 
