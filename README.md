@@ -344,6 +344,12 @@ Examples and tests will be functional now.
 In lieu of a formal styleguide, take care to maintain the existing coding
 style.  Add unit tests for any new or changed functionality.
 
+Before you start, make sure that you have satisfied native dependencies
+of the [node-canvas](https://github.com/Automattic/node-canvas) module,
+which are described for every operating system at the [documentation wiki
+of the project](https://github.com/Automattic/node-canvas/wiki/_pages).
+
+
 First fork this repository and clone your fork locally instead of cloning
 the original.  See the "Build" chapter above for more details about how to
 clone it and install the build dependencies.
