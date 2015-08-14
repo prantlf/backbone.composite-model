@@ -15,7 +15,7 @@ consisting of versions:
 
 A JSON object representing a file would look like this:
 
-```json
+```text
 {
   "id": ...,        // unique ID of the file
   "name": '...',    // display name of the file
