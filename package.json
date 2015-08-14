@@ -38,7 +38,7 @@
     "build": "./node_modules/.bin/uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",
     "doc": "./node_modules/.bin/nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && ./node_modules/.bin/nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && ./node_modules/.bin/nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && ./node_modules/.bin/docco backbone.composite-model.js",
     "test": "./node_modules/.bin/eslint backbone.composite-model.js test/*.js examples/file-system/*.js && ./node_modules/karma/bin/karma start karma-global.conf.js  && ./node_modules/karma/bin/karma start karma-amd.conf.js ./node_modules/.bin/qunit -c backbone.composite-model.js -t test/tests.js",
-    "post_coverage": "./node_modules/.bin/coveralls test/coverage/lcov.info"
+    "post_coverage": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "main": "backbone.composite-model.js",
   "files": [
