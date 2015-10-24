@@ -374,6 +374,7 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2015-10-24   v0.1.2   Fix embedded images on the README page
  * 2015-08-14   v0.1.1   Fix documentation and Travis CI build
  * 2015-08-14   v0.1.0   Initial release
 
