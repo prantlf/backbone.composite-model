@@ -27,11 +27,12 @@
     "karma-coverage": "^0.5.0",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.5",
-    "karma-requirejs": "~0.2.2",
-    "nomnoml-cli": "~0.2.1",
-    "qunit": "~0.7.6",
+    "karma-requirejs": "^0.2.2",
+    "nomnoml-cli": "^0.2.1",
+    "phantomjs": "^1.9.18",
+    "qunit": "^0.7.6",
     "qunitjs": "^1.18.0",
-    "requirejs": "~2.1.20",
+    "requirejs": "^2.1.20",
     "uglify-js": "^2.4.24"
   },
   "scripts": {
