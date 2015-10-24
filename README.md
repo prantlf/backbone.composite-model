@@ -11,7 +11,7 @@ according to the composite model configuration
 Let's have a versioned file-system model: folders containing files, files
 consisting of versions:
 
-![File-System Model](https://github.com/prantlf/backbone.composite-model/blob/master/docs/file-system.png)
+![File-System Model](https://raw.githubusercontent.com/prantlf/backbone.composite-model/master/docs/file-system.png)
 
 A JSON object representing a file would look like this:
 
@@ -148,11 +148,11 @@ owned by the "master" model, including their creation.
 
 Child models are supposed to be created from object literals:
 
-![Slave Model](https://github.com/prantlf/backbone.composite-model/blob/master/docs/slave-model.png)
+![Slave Model](https://raw.githubusercontent.com/prantlf/backbone.composite-model/master/docs/slave-model.png)
 
 Child collections are supposed to be created from arrays:
 
-![Slave Collection](https://github.com/prantlf/backbone.composite-model/blob/master/docs/slave-collection.png)
+![Slave Collection](https://raw.githubusercontent.com/prantlf/backbone.composite-model/master/docs/slave-collection.png)
 
 Initialization of a *composite model* should include the following parts:
 
