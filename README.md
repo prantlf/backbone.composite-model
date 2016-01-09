@@ -374,13 +374,15 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2016-01-09   v0.1.3   Update dependencies and copyright year,
+                         bump version number
  * 2015-10-24   v0.1.2   Fix embedded images on the README page
  * 2015-08-14   v0.1.1   Fix documentation and Travis CI build
  * 2015-08-14   v0.1.0   Initial release
 
 ## License
 
-Copyright (c) 2015 Ferdinand Prantl
+Copyright (c) 2015-2016 Ferdinand Prantl
 
 Licensed under the MIT license.
 
