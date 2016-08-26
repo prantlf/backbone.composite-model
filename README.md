@@ -374,6 +374,7 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2016-08-26   v0.1.4   Update dependencies
  * 2016-01-09   v0.1.3   Update dependencies and copyright year,
                          bump version number
  * 2015-10-24   v0.1.2   Fix embedded images on the README page
