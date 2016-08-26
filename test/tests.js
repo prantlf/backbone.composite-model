@@ -5,7 +5,7 @@
 
   QUnit.module('Backbone.CompositeModel', {
 
-    setup: function () {
+    beforeEach: function () {
       CompositeModel = Backbone.Model.extend({
         constructor: function CompositeModel(attributes, options) {
           CompositeModel.__super__.constructor.apply(this, arguments);
@@ -19,34 +19,34 @@
 
   });
 
-  test('extends the prototype', function () {
-    ok(CompositeModel.prototype.makeComposite,
+  QUnit.test('extends the prototype', function (assert) {
+    assert.ok(CompositeModel.prototype.makeComposite,
       'makeComposite method is present');
   });
 
-  test('works without configuration', function () {
+  QUnit.test('works without configuration', function (assert) {
     var model = new CompositeModel(),
       changed;
     model.on('change', function () {
       changed = true;
     });
-    ok(model.set({id: 1}), 'set() returns a truthy value');
-    equal(model.get('id'), 1, 'set() sets the value as expected');
-    ok(changed, 'set() triggers the expected event');
+    assert.ok(model.set({id: 1}), 'set() returns a truthy value');
+    assert.equal(model.get('id'), 1, 'set() sets the value as expected');
+    assert.ok(changed, 'set() triggers the expected event');
   });
 
-  test('takes configuration from the prototype', function () {
+  QUnit.test('takes configuration from the prototype', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
         }
       }),
       model = new TestCompositeModel();
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
   });
 
-  test('takes configuration from the prototype as function', function () {
+  QUnit.test('takes configuration from the prototype as function', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: function () {
           context = this;
@@ -57,23 +57,23 @@
       }),
       model = new TestCompositeModel(),
       context;
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
-    strictEqual(context, model,
+    assert.strictEqual(context, model,
       'context of the composite function was the model');
   });
 
-  test('takes configuration from the options', function () {
+  QUnit.test('takes configuration from the options', function (assert) {
     var model = new CompositeModel(undefined, {
       composite: {
         submodel: TestModel
       }
     });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
   });
 
-  test('takes configuration from the options as function', function () {
+  QUnit.test('takes configuration from the options as function', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: function () {
           context = this;
@@ -83,13 +83,13 @@
         }
       }),
       context;
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
-    strictEqual(context, model,
+    assert.strictEqual(context, model,
       'context of the composite function was the model');
   });
 
-  test('merges configuration from prototype and options', function () {
+  QUnit.test('merges configuration from prototype and options', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
@@ -100,13 +100,13 @@
           subcollection: TestCollection
         }
       });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
-    ok(model.subcollection instanceof TestCollection,
+    assert.ok(model.subcollection instanceof TestCollection,
       'subcollection property is available');
   });
 
-  test('overrides configuration from prototype with options', function () {
+  QUnit.test('overrides configuration from prototype with options', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: Backbone.Model
@@ -117,12 +117,12 @@
           submodel: TestModel
         }
       });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property of the right type is available');
   });
 
-  test('fails with invalid configuration from the prototype', function () {
-    throws(function () {
+  QUnit.test('fails with invalid configuration from the prototype', function (assert) {
+    assert.throws(function () {
       var TestCompositeModel = CompositeModel.extend({
           composite: 1
         }),
@@ -130,28 +130,28 @@
     }, 'constructor throws');
   });
 
-  test('fails with invalid configuration from the options', function () {
-    throws(function () {
+  QUnit.test('fails with invalid configuration from the options', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: 1
       });
     }, 'constructor throws');
   });
 
-  test('accepts child model configuration directly', function () {
+  QUnit.test('accepts child model configuration directly', function (assert) {
     var model = new CompositeModel(undefined, {
       composite: {
         submodel: TestModel,
         subcollection: TestCollection
       }
     });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
-    ok(model.subcollection instanceof TestCollection,
+    assert.ok(model.subcollection instanceof TestCollection,
       'subcollection property is available');
   });
 
-  test('accepts child model configuration in object literal', function () {
+  QUnit.test('accepts child model configuration in object literal', function (assert) {
     var model = new CompositeModel(undefined, {
       composite: {
         submodel: {
@@ -162,14 +162,14 @@
         }
       }
     });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
-    ok(model.subcollection instanceof TestCollection,
+    assert.ok(model.subcollection instanceof TestCollection,
       'subcollection property is available');
   });
 
-  test('fails with invalid child model specified directly', function () {
-    throws(function () {
+  QUnit.test('fails with invalid child model specified directly', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           submodel: 1
@@ -178,8 +178,8 @@
     }, 'constructor throws');
   });
 
-  test('fails with missing child model in object literal', function () {
-    throws(function () {
+  QUnit.test('fails with missing child model in object literal', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           submodel: {}
@@ -188,8 +188,8 @@
     }, 'constructor throws');
   });
 
-  test('fails with invalid child model in object literal', function () {
-    throws(function () {
+  QUnit.test('fails with invalid child model in object literal', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           submodel: {
@@ -200,8 +200,8 @@
     }, 'constructor throws');
   });
 
-  test('fails with an invalid parse function', function () {
-    throws(function () {
+  QUnit.test('fails with an invalid parse function', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           submodel: {
@@ -213,8 +213,8 @@
     }, 'constructor throws');
   });
 
-  test('fails with unknown data update method', function () {
-    throws(function () {
+  QUnit.test('fails with unknown data update method', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           submodel: {
@@ -226,8 +226,8 @@
     }, 'constructor throws');
   });
 
-  test('fails with an attribute named like an existing method', function () {
-    throws(function () {
+  QUnit.test('fails with an attribute named like an existing method', function (assert) {
+    assert.throws(function () {
       var model = new CompositeModel(undefined, {
         composite: {
           fetch: TestModel
@@ -236,7 +236,7 @@
     }, 'constructor throws');
   });
 
-  test('allows renaming the child object property', function () {
+  QUnit.test('allows renaming the child object property', function (assert) {
     var model = new CompositeModel(undefined, {
       composite: {
         fetch: {
@@ -245,11 +245,11 @@
         }
       }
     });
-    ok(model.submodel instanceof TestModel,
+    assert.ok(model.submodel instanceof TestModel,
       'submodel property is available');
   });
 
-  test('propagates model attributes from the constructor', function () {
+  QUnit.test('propagates model attributes from the constructor', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
@@ -260,11 +260,11 @@
           id: 1
         }
       });
-    equal(model.submodel.get('id'), 1,
+    assert.equal(model.submodel.get('id'), 1,
       'submodel has the expected property');
   });
 
-  test('propagates model attributes from the defaults', function () {
+  QUnit.test('propagates model attributes from the defaults', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
@@ -276,11 +276,11 @@
         }
       }),
       model = new TestCompositeModel();
-    equal(model.submodel.get('id'), 1,
+    assert.equal(model.submodel.get('id'), 1,
       'submodel has the expected property');
   });
 
-  test('ignores the set method called with nothing', function () {
+  QUnit.test('ignores the set method called with nothing', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: {
           submodel: TestModel
@@ -293,12 +293,12 @@
     model.submodel.on('change', function () {
       childChanged = true;
     });
-    ok(model.set(null), 'main model behavior does not change');
-    notOk(changed, 'main model triggers no event');
-    notOk(childChanged, 'submodel triggers no event');
+    assert.ok(model.set(null), 'main model behavior does not change');
+    assert.notOk(changed, 'main model triggers no event');
+    assert.notOk(childChanged, 'submodel triggers no event');
   });
 
-  test('propagates model attributes from the set method', function () {
+  QUnit.test('propagates model attributes from the set method', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: {
           submodel: TestModel
@@ -313,12 +313,12 @@
         id: 1
       }
     });
-    equal(model.submodel.get('id'), 1,
+    assert.equal(model.submodel.get('id'), 1,
       'submodel has the expected property');
-    ok(changed, 'submodel triggers the changed event');
+    assert.ok(changed, 'submodel triggers the changed event');
   });
 
-  test('attributes can be passed in as a key-value pair', function () {
+  QUnit.test('attributes can be passed in as a key-value pair', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: {
           submodel: TestModel
@@ -329,12 +329,12 @@
       changed = true;
     });
     model.set('submodel', {id: 1});
-    equal(model.submodel.get('id'), 1,
+    assert.equal(model.submodel.get('id'), 1,
       'submodel has the expected property');
-    ok(changed, 'submodel triggers the changed event');
+    assert.ok(changed, 'submodel triggers the changed event');
   });
 
-  test('clears child model attributes by the clear method', function () {
+  QUnit.test('clears child model attributes by the clear method', function (assert) {
     var model = new CompositeModel({
         submodel: {
           id: 1
@@ -349,11 +349,11 @@
       changed = true;
     });
     model.clear();
-    notOk(model.submodel.has('id'), 'submodel has been cleared');
-    ok(changed, 'submodel has triggered an event on clearing');
+    assert.notOk(model.submodel.has('id'), 'submodel has been cleared');
+    assert.ok(changed, 'submodel has triggered an event on clearing');
   });
 
-  test('propagates model attributes from the fetch method', function () {
+  QUnit.test('propagates model attributes from the fetch method', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
@@ -374,15 +374,15 @@
       });
     model.fetch({
       success: function () {
-        notOk(model.submodel.has('id'),
+        assert.notOk(model.submodel.has('id'),
           'submodel has the expected property cleared');
-        equal(model.submodel.get('name'), 2,
+        assert.equal(model.submodel.get('name'), 2,
           'submodel has the expected property set');
       }
     });
   });
 
-  test('propagates model attributes from the save method', function () {
+  QUnit.test('propagates model attributes from the save method', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           submodel: TestModel
@@ -403,15 +403,15 @@
       });
     model.save({}, {
       success: function () {
-        equal(model.submodel.get('id'), 1,
+        assert.equal(model.submodel.get('id'), 1,
           'submodel has the expected property left intact');
-        equal(model.submodel.get('name'), 2,
+        assert.equal(model.submodel.get('name'), 2,
           'submodel has the expected property added');
       }
     });
   });
 
-  test('propagates collection models from the constructor', function () {
+  QUnit.test('propagates collection models from the constructor', function (assert) {
     var model = new CompositeModel({
       subcollection: [
         {id: 1}
@@ -421,13 +421,13 @@
         subcollection: TestCollection
       }
     });
-    equal(model.subcollection.length, 1,
+    assert.equal(model.subcollection.length, 1,
       'subcollection has the expected length');
-    equal(model.subcollection.first().get('id'), 1,
+    assert.equal(model.subcollection.first().get('id'), 1,
       'first model in subcollection has the expected property');
   });
 
-  test('propagates collection models from the set method', function () {
+  QUnit.test('propagates collection models from the set method', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: {
           subcollection: TestCollection
@@ -442,14 +442,14 @@
         {id: 1}
       ]
     });
-    equal(model.subcollection.length, 1,
+    assert.equal(model.subcollection.length, 1,
       'subcollection has the expected length');
-    equal(model.subcollection.first().get('id'), 1,
+    assert.equal(model.subcollection.first().get('id'), 1,
       'first model in subcollection has the expected property');
-    ok(changed, 'subcollection triggers the add event');
+    assert.ok(changed, 'subcollection triggers the add event');
   });
 
-  test('removes child collection models by the clear method', function () {
+  QUnit.test('removes child collection models by the clear method', function (assert) {
     var model = new CompositeModel({
         subcollection: [
           {id: 1}
@@ -464,11 +464,11 @@
       changed = true;
     });
     model.clear();
-    notOk(model.subcollection.length, 'subcollection has been reset');
-    ok(changed, 'subcollection has triggered an event on resetting');
+    assert.notOk(model.subcollection.length, 'subcollection has been reset');
+    assert.ok(changed, 'subcollection has triggered an event on resetting');
   });
 
-  test('propagates collection models from the fetch method', function () {
+  QUnit.test('propagates collection models from the fetch method', function (assert) {
     var TestCompositeModel = CompositeModel.extend({
         composite: {
           subcollection: TestCollection
@@ -487,15 +487,15 @@
       ]);
     model.fetch({
       success: function () {
-        equal(model.subcollection.length, 1,
+        assert.equal(model.subcollection.length, 1,
           'subcollection has the expected length');
-        equal(model.subcollection.first().get('name'), 2,
+        assert.equal(model.subcollection.first().get('name'), 2,
           'first model in subcollection has the expected property');
       }
     });
   });
 
-  test('allows overriding the data update method', function () {
+  QUnit.test('allows overriding the data update method', function (assert) {
     var model = new CompositeModel([
         {id: 1}
       ], {
@@ -515,23 +515,23 @@
         {name: 2}
       ]
     });
-    equal(model.subcollection.length, 1,
+    assert.equal(model.subcollection.length, 1,
       'subcollection has the expected length');
-    notOk(model.subcollection.first().has('id'),
+    assert.notOk(model.subcollection.first().has('id'),
       'first model in subcollection lacks the original property');
-    equal(model.subcollection.first().get('name'), 2,
+    assert.equal(model.subcollection.first().get('name'), 2,
       'first model in subcollection has the new property');
-    ok(changed, 'subcollection has triggered a reset event');
+    assert.ok(changed, 'subcollection has triggered a reset event');
   });
 
-  test('passes the main model as context to the parse function', function () {
+  QUnit.test('passes the main model as context to the parse function', function (assert) {
     var model = new CompositeModel(undefined, {
         composite: {
           submodel: {
             type: TestModel,
             parse: function (attributes, options) {
               called = true;
-              strictEqual(this, model, 'context is the model');
+              assert.strictEqual(this, model, 'context is the model');
               return attributes;
             }
           }
@@ -543,10 +543,10 @@
         id: 1
       }
     });
-    ok(called, 'the parse method has been called');
+    assert.ok(called, 'the parse method has been called');
   });
 
-  test('allows pre-processing the model attributes', function () {
+  QUnit.test('allows pre-processing the model attributes', function (assert) {
     var model = new CompositeModel({
       submodel: {
         id: 1
@@ -562,11 +562,11 @@
         }
       }
     });
-    equal(model.submodel.get('id'), 2,
+    assert.equal(model.submodel.get('id'), 2,
       'submodel has the expected property');
   });
 
-  test('allows pre-processing the collection models', function () {
+  QUnit.test('allows pre-processing the collection models', function (assert) {
     var model = new CompositeModel({
       subcollection: [
         {id: 1}
@@ -583,11 +583,11 @@
         }
       }
     });
-    equal(model.subcollection.length, 2,
+    assert.equal(model.subcollection.length, 2,
       'subcollection has the expected length');
-    equal(model.subcollection.first().get('id'), 2,
+    assert.equal(model.subcollection.first().get('id'), 2,
       'first model in subcollection has the expected property');
-    equal(model.subcollection.last().get('id'), 3,
+    assert.equal(model.subcollection.last().get('id'), 3,
       'last model in subcollection has the expected property');
   });
 
