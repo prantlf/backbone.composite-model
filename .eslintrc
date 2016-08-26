@@ -26,7 +26,7 @@
     "no-underscore-dangle": 0,
     "quotes": [2, "single", "avoid-escape"],
     "radix": 0,
-    "space-after-keywords": [2, "always"],
+    "keyword-spacing": 2,
     "object-curly-spacing": [2, "never"],
     "array-bracket-spacing": [2, "never"],
     "computed-property-spacing": [2, "never"],
