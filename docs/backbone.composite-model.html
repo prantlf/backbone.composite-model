@@ -27,9 +27,9 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p>Backbone.CompositeModel 0.1.2
+              <p>Backbone.CompositeModel 0.1.3
 <a href="https://github.com/prantlf/backbone.composite-model">https://github.com/prantlf/backbone.composite-model</a></p>
-<p>Copyright (c) 2015 Ferdinand Prantl
+<p>Copyright (c) 2015-2016 Ferdinand Prantl
 Licensed under the MIT license.</p>
 <p>Supports composite Backbone.Model objects which consist of a main model
 and child models or collections maintained automatically according to a
@@ -102,7 +102,7 @@ about a file:</p>
   <span class="hljs-comment">// Override the constructor to see the name `FileModel`</span>
   <span class="hljs-comment">// in the debugger and to be able to initialize the</span>
   <span class="hljs-comment">// composite model</span>
-  constructor: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FileModel</span>(<span class="hljs-params">attributes, options</span>) </span>{
+  <span class="hljs-keyword">constructor</span>: function FileModel(attributes, options) {
     FileModel.__super__.constructor.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
     <span class="hljs-keyword">this</span>,makeComposite(options);
   },
@@ -173,7 +173,7 @@ using a common Backbone interface.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root, factory</span>) </span>{
-<span class="hljs-pi">  'use strict'</span>;</pre></div></div>
+<span class="hljs-meta">  'use strict'</span>;</pre></div></div>
             
         </li>
         
@@ -224,7 +224,7 @@ using a common Backbone interface.</p>
     root.returnExports = factory(root._, root.Backbone);
   }
 }(<span class="hljs-keyword">this</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, Backbone</span>) </span>{
-<span class="hljs-pi">  'use strict'</span>;</pre></div></div>
+<span class="hljs-meta">  'use strict'</span>;</pre></div></div>
             
         </li>
         
@@ -268,32 +268,32 @@ instance or constructor <code>options</code>.</p>
 <pre><code><span class="hljs-comment">// Maintains a property on the model instance with</span>
 <span class="hljs-comment">// the attribute name pointing to an object instance</span>
 <span class="hljs-comment">// of the specified type</span>
-&lt;attribute name&gt;: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Backbone</span> <span class="hljs-attribute">model</span> <span class="hljs-attribute">or</span> <span class="hljs-attribute">collection</span>&gt;</span>,
+&lt;attribute name&gt;: &lt;Backbone model or collection&gt;,
 
 // Maintains a property on the model instance backed
 // up by the specified attribute overriding the
 // default handling
-<span class="hljs-tag">&lt;<span class="hljs-title">attribute</span> <span class="hljs-attribute">name</span>&gt;</span>: {
+&lt;attribute name&gt;: {
   // Model or collection to create for the attribute
   // value (required)
-  type: <span class="hljs-tag">&lt;<span class="hljs-title">Backbone</span> <span class="hljs-attribute">model</span> <span class="hljs-attribute">or</span> <span class="hljs-attribute">collection</span>&gt;</span>,
+  type: &lt;Backbone model or collection&gt;,
   // Property name to store the sub-object on the
   // model with (optional; the attribute name is
   //  the default)
-  property: <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>&gt;</span>,
+  property: &lt;property name&gt;,
   // Additional options to pass to the constructor of
   // the sub-object (optional; undefined by default)
-  options: <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">literal</span>&gt;</span>,
+  options: &lt;object literal&gt;,
   // Method to call on the child model or collection
   // if updated data are being set (optional; `set` is
   // the default for models, `add` for collections)
-  method: <span class="hljs-tag">&lt;<span class="hljs-title">method</span> <span class="hljs-attribute">name</span>&gt;</span>,
+  method: &lt;method name&gt;,
   // Function to call before the value is passed to
   // child model or collection constructor or `set` /
   // `add` method to "massage" the input data
   // (optional; `undefined` is the default)
-  parse: <span class="hljs-tag">&lt;<span class="hljs-title">function</span> (<span class="hljs-attribute">value</span>, <span class="hljs-attribute">options</span>)&gt;</span>,
-}</span>
+  parse: &lt;function (value, options)&gt;,
+}
 </code></pre>
             </div>
             
