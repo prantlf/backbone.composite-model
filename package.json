@@ -15,31 +15,30 @@
     "composite"
   ],
   "dependencies": {
-    "backbone": ">=1.2.3",
-    "jquery": "^2.2.0",
+    "backbone": ">=1.3.3",
+    "jquery": "^3.1.0",
     "underscore": ">=1.8.3"
   },
   "devDependencies": {
-    "coveralls": "^2.11.6",
+    "coveralls": "^2.11.12",
     "docco": "^0.7.0",
-    "eslint": "^1.10.3",
-    "karma": "^0.13.19",
-    "karma-coverage": "^0.5.3",
-    "karma-phantomjs-launcher": "^0.2.3",
-    "karma-qunit": "^0.1.8",
-    "karma-requirejs": "^0.2.3",
-    "nomnoml-cli": "^0.2.3",
-    "phantomjs": "^1.9.19",
-    "qunit": "^0.7.7",
-    "qunitjs": "^1.20.0",
+    "eslint": "^3.3.1",
+    "karma": "^0.13.22",
+    "karma-coverage": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-qunit": "^1.2.0",
+    "karma-requirejs": "^1.0.0",
+    "nomnoml-cli": "^0.3.0",
+    "phantomjs-prebuilt": "^2.1.7",
+    "qunitjs": "^1.23.1",
     "requirejs": "^2.1.22",
-    "uglify-js": "^2.6.1"
+    "uglify-js": "^2.7.3"
   },
   "scripts": {
-    "build": "./node_modules/.bin/uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",
-    "doc": "./node_modules/.bin/nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && ./node_modules/.bin/nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && ./node_modules/.bin/nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && ./node_modules/.bin/docco backbone.composite-model.js",
-    "test": "./node_modules/.bin/eslint backbone.composite-model.js test/*.js examples/file-system/*.js && ./node_modules/karma/bin/karma start karma-global.conf.js  && ./node_modules/karma/bin/karma start karma-amd.conf.js ./node_modules/.bin/qunit -c backbone.composite-model.js -t test/tests.js",
-    "post_coverage": "cat test/coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "build": "uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",
+    "doc": "nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && docco backbone.composite-model.js",
+    "test": "eslint backbone.composite-model.js test/*.js examples/file-system/*.js && karma start karma-global.conf.js  && karma start karma-amd.conf.js qunit -c backbone.composite-model.js -t test/tests.js",
+    "post_coverage": "cat test/coverage/lcov.info | coveralls"
   },
   "main": "backbone.composite-model.js",
   "files": [
