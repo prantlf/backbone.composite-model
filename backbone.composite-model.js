@@ -1,4 +1,4 @@
-// Backbone.CompositeModel 0.1.6
+// Backbone.CompositeModel 0.1.7
 // https://github.com/prantlf/backbone.composite-model
 //
 // Copyright (c) 2015-2017 Ferdinand Prantl
