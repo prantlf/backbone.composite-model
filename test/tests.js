@@ -591,4 +591,37 @@
       'last model in subcollection has the expected property');
   });
 
+  QUnit.test('serializes changes done to the nested model', function (assert) {
+    var TestCompositeModel = CompositeModel.extend({
+        composite: {
+          submodel: TestModel
+        }
+      }),
+      model = new TestCompositeModel(),
+      output;
+    model.submodel.set('id', 1);
+    output = model.toJSON();
+    assert.ok(!!output.submodel, true,
+      'submodel has been serialized');
+    assert.ok(output.submodel.id, 1,
+      'submodel changes have been serialized');
+  });
+
+  QUnit.test('serializes changes done to the nested collection', function (assert) {
+    var model = new CompositeModel(undefined, {
+          composite: {
+            subcollection: TestCollection
+          }
+        }),
+        output;
+    model.subcollection.add({id: 1});
+    output = model.toJSON();
+    assert.equal(!!output.subcollection, true,
+      'subcollection has been serialized');
+    assert.equal(output.subcollection.length, 1,
+      'subcollection items have have been serialized');
+    assert.equal(output.subcollection[0].id, 1,
+      'subcollection item changes have have been serialized');
+  });
+
 }());

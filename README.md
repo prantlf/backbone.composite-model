@@ -6,6 +6,21 @@ Supports composite [`Backbone.Model`] objects which represent a "master"
 model containing "slave" models or collections maintained automatically
 according to the composite model configuration
 
+* [Motivation Example]
+  + [Flat Model]
+  + [Manual Composite Model]
+  + [Reusable Composite Model]
+* [Synopsis]
+  + [Composite Configuration]
+  + [Configuration Examples]
+* [What Is It For?]
+* [What Is It Not For?]
+* [Installation]
+* [Build]
+* [Contributing]
+* [Release History]
+* [License]
+
 ## Motivation Example
 
 Let's have a versioned file-system model: folders containing files, files
@@ -286,27 +301,29 @@ composite: {
 
 ## What Is It For?
 
-Forward changes (main model attributes -> child model or collection):
+* Forward changes (main model attributes -> child model or collection):
+  + Create a property on the main model with the child model or collection
+    automatically
+  + If the root attribute on the main model, which backs up the child model
+    or collection, changes by calling the `set` method, propagate the change
+    to the child model or collection
+* You need to fetch or constantly re-fetch the main model and have the
+  listeners (views) notified about changes in the child models or collections.
 
-* Create a property on the main model with the child model or collection
-  automatically
-* If the root attribute on the main model, which backs up the child model
-  or collection, changes by calling the `set` method, propagate the change
-  to the child model or collection
-
-You need to fetch or constantly re-fetch the main model and have the
-listeners (views) notified about changes in the child models or collections.
+You can get the up-to-date content of all nested models and collections by
+calling `toJSON` of the master model.
 
 ## What Is It Not For?
 
-Backward changes (child model or collection: -> main model attributes):
+* Backward changes (child model or collection: -> main model attributes):
+  + If an attribute of the child model or a model in the child collection
+    changes, propagate the change to the object under the root attribute,
+    which backs up the child model or collection
 
-* If an attribute of the child model or a model in the child collection
-  changes, propagate the change to the object under the root attribute,
-  which backs up the child model or collection
-
-You need to update the child models or collections and store the changes by
-saving the main model later.
+Instead of updating `attributes` of the master model directly, you can
+consider calling `set/unset/clear/add/remove/reset` methods of nested models
+and collections. You will be able to get the up-to-date content of all nested
+models and collections by calling `toJSON` of the master model.
 
 ## Installation
 
@@ -374,6 +391,8 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2017-04-16   v0.1.6   Override toJSON method to get up-to-date content
+                         of all nested models and collections
  * 2017-04-16   v0.1.5   Update dependencies
  * 2016-08-26   v0.1.4   Update dependencies
  * 2016-01-09   v0.1.3   Update dependencies and copyright year,

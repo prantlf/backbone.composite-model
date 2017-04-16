@@ -1,4 +1,4 @@
-// Backbone.CompositeModel 0.1.5
+// Backbone.CompositeModel 0.1.6
 // https://github.com/prantlf/backbone.composite-model
 //
 // Copyright (c) 2015-2017 Ferdinand Prantl
@@ -64,14 +64,13 @@
 // without an additional code.
 //
 //     var file = new FileModel({id: ...});
-//     file
-//       .fetch()
-//       .done(function () {
-//         console.log('Name:', file.get('name'));
-//         // This does not work.
-//         console.log('Parent folder:', file.parent.get('name'));
-//         console.log('Version count:', file.versions.length);
-//       });
+//     file.fetch()
+//         .done(function () {
+//           console.log('Name:', file.get('name'));
+//           // This does not work.
+//           console.log('Parent folder:', file.parent.get('name'));
+//           console.log('Version count:', file.versions.length);
+//         });
 //
 // The `parent` object and the `versions` array are be accessible as
 // `Backbone.Model` and `Backbone.Collection` to be able to pass them to
@@ -140,7 +139,8 @@
   //     }
   //
   Backbone.mixinCompositeModel = function (prototype) {
-    var originalSet = prototype.set;
+    var originalSet = prototype.set,
+        originalToJSON = prototype.toJSON;
 
     return _.extend(prototype, {
 
@@ -185,13 +185,34 @@
         options || (options = {});
         // Set the common attributes and check the result first
         var result = originalSet.call(this, attributes, options);
-        // Update the child models and collections if the input data were
-        // valid and the composite descriptor has been initialized (after
-        // the constructor has finished)
-        if (result && key != null && this._compositeMap) {
+        // Update the child models and collections if the composite
+        // map has been initialized (after the constructor has finished)
+        if (result && this._compositeMap) {
           this._updateComposite(attributes, options);
         }
         // Return the same result as the original `set` method
+        return result;
+      },
+
+      // Overrides the `Backbone.Model:toJSON()` method to ensure that the
+      // up-to-date nested attribute values will be present in the result
+      toJSON: function(options) {
+        var result = originalToJSON.call(this, options);
+        // Update keys maintained by child models and collections only if
+        // the composite map has been initialized (after the constructor
+        // has finished)
+        if (this._compositeMap) {
+          // Process only attributes listed in the composite map
+          _.each(this._compositeMap, function (composite, key) {
+            // Get the nested model or collection for the composite item
+            var child = this[composite.property];
+            // If the nested model or collection is available, propagate
+            // its current content to the resulting JSON
+            if (child) {
+              result[key] = child.toJSON();
+            }
+          }, this);
+        }
         return result;
       },
 
