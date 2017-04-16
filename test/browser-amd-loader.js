@@ -6,7 +6,7 @@
     paths: {
       backbone: '../node_modules/backbone/backbone',
       jquery: '../node_modules/jquery/dist/jquery',
-      qunit: '../node_modules/qunitjs/qunit/qunit',
+      qunit: 'qunit-define',
       underscore: '../node_modules/underscore/underscore'
     },
     shim: {

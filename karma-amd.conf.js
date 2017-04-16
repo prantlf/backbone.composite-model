@@ -18,7 +18,7 @@ module.exports = function (config) {
       {pattern: 'node_modules/backbone/backbone.js', included: false},
       {pattern: 'node_modules/jquery/dist/jquery.js', included: false},
       {pattern: 'node_modules/qunitjs/qunit/qunit.css', included: false},
-      {pattern: 'node_modules/qunitjs/qunit/qunit.js', included: false},
+      {pattern: 'test/qunit-define.js', included: false},
       {pattern: 'node_modules/underscore/underscore.js', included: false},
       {pattern: 'test/tests.js', included: false},
       'test/karma-amd-loader.js'

@@ -5,7 +5,7 @@
     paths: {
       backbone: '/base/node_modules/backbone/backbone',
       jquery: '/base/node_modules/jquery/dist/jquery',
-      qunit: '/base/node_modules/qunitjs/qunit/qunit',
+      qunit: '/base/test/qunit-define',
       underscore: '/base/node_modules/underscore/underscore',
       tests: '/base/test/tests'
     },
