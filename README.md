@@ -6,20 +6,20 @@ Supports composite [`Backbone.Model`] objects which represent a "master"
 model containing "slave" models or collections maintained automatically
 according to the composite model configuration
 
-* [Motivation Example]
-  + [Flat Model]
-  + [Manual Composite Model]
-  + [Reusable Composite Model]
-* [Synopsis]
-  + [Composite Configuration]
-  + [Configuration Examples]
-* [What Is It For?]
-* [What Is It Not For?]
-* [Installation]
-* [Build]
-* [Contributing]
-* [Release History]
-* [License]
+* [Motivation Example](#motivation-example)
+  + [Flat Model](#flat-model)
+  + [Manual Composite Model](#manual-composite-model)
+  + [Reusable Composite Model](#reusable-composite-model)
+* [Synopsis](#synopsis)
+  + [Composite Configuration](#composite-configuration)
+  + [Configuration Examples](#configuration-examples)
+* [What Is It For?](#what-is-it-for)
+* [What Is It Not For?](#what-is-it-not-for)
+* [Installation](#installation)
+* [Build](#build)
+* [Contributing](#contributing)
+* [Release History](#release-history)
+* [License](#license)
 
 ## Motivation Example
 
@@ -391,6 +391,7 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2017-04-16   v0.1.7   Fix documentation
  * 2017-04-16   v0.1.6   Override toJSON method to get up-to-date content
                          of all nested models and collections
  * 2017-04-16   v0.1.5   Update dependencies
