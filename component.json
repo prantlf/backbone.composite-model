@@ -1,6 +1,6 @@
 {
   "name"          : "backbone.composite-model",
-  "version"       : "0.1.4",
+  "version"       : "0.1.5",
   "description"   : "Supports composite Backbone.Model objects",
   "keywords"      : ["model", "backbone", "composite"],
   "repo"          : "prantlf/backbone.composite-model",

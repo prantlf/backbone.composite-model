@@ -374,6 +374,7 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2017-04-16   v0.1.5   Update dependencies
  * 2016-08-26   v0.1.4   Update dependencies
  * 2016-01-09   v0.1.3   Update dependencies and copyright year,
                          bump version number
@@ -383,7 +384,7 @@ git push origin <branch name>
 
 ## License
 
-Copyright (c) 2015-2016 Ferdinand Prantl
+Copyright (c) 2015-2017 Ferdinand Prantl
 
 Licensed under the MIT license.
 

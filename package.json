@@ -1,6 +1,6 @@
 {
   "name": "backbone.composite-model",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Supports composite Backbone.Model objects",
   "url": "https://github.com/prantlf/backbone.composite-model",
   "author": "Ferdinand Prantl <prantlf@gmail.com>",
@@ -16,23 +16,23 @@
   ],
   "dependencies": {
     "backbone": ">=1.3.3",
-    "jquery": "^3.1.0",
+    "jquery": "^3.2.1",
     "underscore": ">=1.8.3"
   },
   "devDependencies": {
-    "coveralls": "^2.11.12",
+    "coveralls": "^2.13.0",
     "docco": "^0.7.0",
-    "eslint": "^3.3.1",
-    "karma": "^0.13.22",
+    "eslint": "^3.19.0",
+    "karma": "^1.6.0",
     "karma-coverage": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.1",
-    "karma-qunit": "^1.2.0",
-    "karma-requirejs": "^1.0.0",
-    "nomnoml-cli": "^0.3.0",
-    "phantomjs-prebuilt": "^2.1.7",
-    "qunitjs": "^1.23.1",
-    "requirejs": "^2.1.22",
-    "uglify-js": "^2.7.3"
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-qunit": "^1.2.1",
+    "karma-requirejs": "^1.1.0",
+    "nomnoml-cli": "^0.4.7",
+    "phantomjs-prebuilt": "^2.1.14",
+    "qunitjs": "^2.3.1",
+    "requirejs": "^2.3.3",
+    "uglify-js": "^2.8.22"
   },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",

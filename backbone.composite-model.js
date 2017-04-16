@@ -1,7 +1,7 @@
-// Backbone.CompositeModel 0.1.3
+// Backbone.CompositeModel 0.1.5
 // https://github.com/prantlf/backbone.composite-model
 //
-// Copyright (c) 2015-2016 Ferdinand Prantl
+// Copyright (c) 2015-2017 Ferdinand Prantl
 // Licensed under the MIT license.
 //
 // Supports composite Backbone.Model objects which consist of a main model
