@@ -27,9 +27,9 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <p>Backbone.CompositeModel 0.1.3
+              <p>Backbone.CompositeModel 0.1.5
 <a href="https://github.com/prantlf/backbone.composite-model">https://github.com/prantlf/backbone.composite-model</a></p>
-<p>Copyright (c) 2015-2016 Ferdinand Prantl
+<p>Copyright (c) 2015-2017 Ferdinand Prantl
 Licensed under the MIT license.</p>
 <p>Supports composite Backbone.Model objects which consist of a main model
 and child models or collections maintained automatically according to a
@@ -76,7 +76,7 @@ sub-folders and files, files consisting of file versions.  The REST
 API resource <code>/files/:id</code> returns the following (simplified) response
 about a file:</p>
 <pre><code>{
-  id: ...,                <span class="hljs-comment">// globally unique ID</span>
+  <span class="hljs-attr">id</span>: ...,                <span class="hljs-comment">// globally unique ID</span>
   name: <span class="hljs-string">'...'</span>,            <span class="hljs-comment">// file display name</span>
   parent_expanded: {...}, <span class="hljs-comment">// parent folder object</span>
   versions: [...]         <span class="hljs-comment">// version object array</span>
@@ -92,11 +92,11 @@ about a file:</p>
   <span class="hljs-comment">// up what child models and collection stored in</span>
   <span class="hljs-comment">// properties on the object instance</span>
   composite: {
-    parent_expanded: {
-      model: FolderModel,
-      property: <span class="hljs-string">'parent'</span>
+    <span class="hljs-attr">parent_expanded</span>: {
+      <span class="hljs-attr">model</span>: FolderModel,
+      <span class="hljs-attr">property</span>: <span class="hljs-string">'parent'</span>
     },
-    versions: VersionCollection,
+    <span class="hljs-attr">versions</span>: VersionCollection,
   },
 
   <span class="hljs-comment">// Override the constructor to see the name `FileModel`</span>
@@ -118,7 +118,7 @@ about a file:</p>
 Backbone.mixinCompositeModel(FileModel.prototype);
 </code></pre><p>This lets the <code>parent</code> and <code>versions</code> properties maintained automatically
 without an additional code.</p>
-<pre><code><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> FileModel({id: ...});
+<pre><code><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> FileModel({<span class="hljs-attr">id</span>: ...});
 file
   .fetch()
   .done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
@@ -357,7 +357,7 @@ the parent constructor has been called</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        options = _.extend({create: <span class="hljs-literal">true</span>}, options);
+            <div class="content"><div class='highlight'><pre>        options = _.extend({<span class="hljs-attr">create</span>: <span class="hljs-literal">true</span>}, options);
         <span class="hljs-keyword">this</span>._compositeMap = <span class="hljs-keyword">this</span>._createCompositeMap(options);</pre></div></div>
             
         </li>
@@ -757,10 +757,10 @@ model or collection prototype</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>          result[attribute] = {
-            model: model,
-            property: property,
-            parse: parse,
-            method: method
+            <span class="hljs-attr">model</span>: model,
+            <span class="hljs-attr">property</span>: property,
+            <span class="hljs-attr">parse</span>: parse,
+            <span class="hljs-attr">method</span>: method
           };
           <span class="hljs-keyword">return</span> result;
         }, {});
@@ -938,11 +938,11 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
               <span class="hljs-keyword">if</span> (child <span class="hljs-keyword">instanceof</span> Backbone.Model) {
                 <span class="hljs-keyword">var</span> missing = _.omit(child.attributes, _.keys(value));
                 child.set(missing, {
-                  unset: <span class="hljs-literal">true</span>,
-                  silent: <span class="hljs-literal">true</span>
+                  <span class="hljs-attr">unset</span>: <span class="hljs-literal">true</span>,
+                  <span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>
                 });
               } <span class="hljs-keyword">else</span> {
-                child.reset(<span class="hljs-literal">undefined</span>, {silent: <span class="hljs-literal">true</span>});
+                child.reset(<span class="hljs-literal">undefined</span>, {<span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>});
               }
             }
             child[composite.method](value, options);
