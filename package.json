@@ -32,7 +32,7 @@
     "phantomjs-prebuilt": "^2.1.14",
     "qunitjs": "^2.3.1",
     "requirejs": "^2.3.3",
-    "uglify-js": "^2.8.22"
+    "uglify-js": "^3.0.0"
   },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map backbone.composite-model.min.map -o backbone.composite-model.min.js",
