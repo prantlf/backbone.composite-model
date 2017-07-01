@@ -1,6 +1,6 @@
 {
   "name": "backbone.composite-model",
-  "version": "0.1.7",
+  "version": "0.0.0-development",
   "description": "Supports composite Backbone.Model objects",
   "url": "https://github.com/prantlf/backbone.composite-model",
   "author": "Ferdinand Prantl <prantlf@gmail.com>",
@@ -32,13 +32,15 @@
     "phantomjs-prebuilt": "^2.1.14",
     "qunitjs": "^2.3.1",
     "requirejs": "^2.3.3",
-    "uglify-js": "^3.0.0"
+    "uglify-js": "^3.0.0",
+    "semantic-release": "^6.3.6"
   },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map --output backbone.composite-model.min.js",
     "doc": "nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && docco backbone.composite-model.js",
     "test": "eslint backbone.composite-model.js test/*.js examples/file-system/*.js && karma start karma-global.conf.js  && karma start karma-amd.conf.js qunit -c backbone.composite-model.js -t test/tests.js",
-    "post_coverage": "cat test/coverage/lcov.info | coveralls"
+    "post_coverage": "cat test/coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "main": "backbone.composite-model.js",
   "files": [
