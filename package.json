@@ -33,7 +33,7 @@
     "qunitjs": "^2.3.1",
     "requirejs": "^2.3.3",
     "uglify-js": "^3.0.0",
-    "semantic-release": "^6.3.6"
+    "semantic-release": "^7.0.1"
   },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map --output backbone.composite-model.min.js",
