@@ -20,7 +20,7 @@
     "underscore": ">=1.8.3"
   },
   "devDependencies": {
-    "coveralls": "^2.13.0",
+    "coveralls": "^3.0.0",
     "docco": "^0.7.0",
     "eslint": "^4.8.0",
     "karma": "^1.6.0",
