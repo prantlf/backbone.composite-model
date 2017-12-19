@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "docco": "^0.7.0",
+    "docco": "^0.8.0",
     "eslint": "^4.8.0",
     "karma": "^1.7.1",
     "karma-coverage": "^1.1.1",
