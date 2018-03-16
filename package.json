@@ -22,7 +22,7 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "docco": "^0.8.0",
-    "eslint": "^4.17.0",
+    "eslint": "^4.19.0",
     "karma": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
