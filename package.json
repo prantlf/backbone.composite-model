@@ -26,21 +26,24 @@
     "karma": "^2.0.0",
     "karma-coverage": "^1.1.1",
     "karma-phantomjs-launcher": "^1.0.4",
-    "karma-qunit": "^2.0.0",
+    "karma-qunit": "^2.0.1",
     "karma-requirejs": "^1.1.0",
     "nomnoml-cli": "^0.6.6",
+    "nsp": "^3.2.1",
     "phantomjs-prebuilt": "^2.1.16",
-    "qunitjs": "^2.4.1",
+    "qunit": "^2.5.1",
     "requirejs": "^2.3.5",
-    "uglify-js": "^3.3.9",
-    "semantic-release": "^15.1.2"
+    "semantic-release": "^15.0.2",
+    "travis-deploy-once": "^4.4.0",
+    "uglify-js": "^3.3.15"
   },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map --output backbone.composite-model.min.js",
     "doc": "nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && docco backbone.composite-model.js",
     "test": "eslint backbone.composite-model.js test/*.js examples/file-system/*.js && karma start karma-global.conf.js  && karma start karma-amd.conf.js qunit -c backbone.composite-model.js -t test/tests.js",
     "post_coverage": "cat test/coverage/lcov.info | coveralls",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "main": "backbone.composite-model.js",
   "files": [
