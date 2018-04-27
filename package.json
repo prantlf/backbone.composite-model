@@ -28,7 +28,7 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-qunit": "^2.0.1",
     "karma-requirejs": "^1.1.0",
-    "nomnoml-cli": "^0.6.6",
+    "nomnoml-cli": "^1.0.0",
     "nsp": "^3.2.1",
     "phantomjs-prebuilt": "^2.1.16",
     "qunit": "^2.6.0",
