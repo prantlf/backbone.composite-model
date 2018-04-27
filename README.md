@@ -327,7 +327,7 @@ models and collections by calling `toJSON` of the master model.
 
 ## Installation
 
-Make sure that you have [NodeJS] >= 0.10 installed.  You can use either `npm`
+Make sure that you have [NodeJS] >= 6 installed.  You can use either `npm`
 or `bower` to install this package and its dependencies.
 
 With [NPM]:
@@ -344,7 +344,7 @@ bower install backbone.composite-model
 
 ## Build
 
-Make sure that you have [NodeJS] >= 0.10 installed.  Clone the Github
+Make sure that you have [NodeJS] >= 6 installed.  Clone the Github
 repository to a local directory, enter it and install the package
 dependencies (including the development dependencies) by `npm`:
 
@@ -391,6 +391,7 @@ git push origin <branch name>
 
 ## Release History
 
+ * 2018-04-27   v1.0.0   Dropped support of Node.js 4
  * 2017-04-16   v0.1.7   Fix documentation
  * 2017-04-16   v0.1.6   Override toJSON method to get up-to-date content
                          of all nested models and collections
@@ -404,7 +405,7 @@ git push origin <branch name>
 
 ## License
 
-Copyright (c) 2015-2017 Ferdinand Prantl
+Copyright (c) 2015-2018 Ferdinand Prantl
 
 Licensed under the MIT license.
 
