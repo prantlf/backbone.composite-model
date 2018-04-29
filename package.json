@@ -34,7 +34,7 @@
     "qunit": "^2.6.0",
     "requirejs": "^2.3.5",
     "semantic-release": "^15.1.7",
-    "travis-deploy-once": "^4.4.1",
+    "travis-deploy-once": "^5.0.0",
     "uglify-js": "^3.3.22"
   },
   "scripts": {
