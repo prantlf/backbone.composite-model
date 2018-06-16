@@ -37,6 +37,9 @@
     "travis-deploy-once": "^4.4.1",
     "uglify-js": "^3.3.22"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map --output backbone.composite-model.min.js",
     "doc": "nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && docco backbone.composite-model.js",
