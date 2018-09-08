@@ -80,8 +80,7 @@ about a file:</p>
   name: <span class="hljs-string">'...'</span>,            <span class="hljs-comment">// file display name</span>
   parent_expanded: {...}, <span class="hljs-comment">// parent folder object</span>
   versions: [...]         <span class="hljs-comment">// version object array</span>
-}
-</code></pre><p>Let’s declare the following (simplified) models and collections for them:</p>
+}</code></pre><p>Let’s declare the following (simplified) models and collections for them:</p>
 <pre><code><span class="hljs-keyword">var</span> FolderModel = Backbone.Model.extend({...});
 
 <span class="hljs-keyword">var</span> VersionCollection = Backbone.Collection.extend({...});
@@ -115,8 +114,7 @@ about a file:</p>
 
 <span class="hljs-comment">// Extend the function object prototype to become</span>
 <span class="hljs-comment">// a composite of child models and collections</span>
-Backbone.mixinCompositeModel(FileModel.prototype);
-</code></pre><p>This lets the <code>parent</code> and <code>versions</code> properties maintained automatically
+Backbone.mixinCompositeModel(FileModel.prototype);</code></pre><p>This lets the <code>parent</code> and <code>versions</code> properties maintained automatically
 without an additional code.</p>
 <pre><code><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> FileModel({<span class="hljs-attr">id</span>: ...});
 file.fetch()
@@ -125,8 +123,7 @@ file.fetch()
       <span class="hljs-comment">// This does not work.</span>
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Parent folder:'</span>, file.parent.get(<span class="hljs-string">'name'</span>));
       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Version count:'</span>, file.versions.length);
-    });
-</code></pre><p>The <code>parent</code> object and the <code>versions</code> array are be accessible as
+    });</code></pre><p>The <code>parent</code> object and the <code>versions</code> array are be accessible as
 <code>Backbone.Model</code> and <code>Backbone.Collection</code> to be able to pass them to
 other models and views and listen to their events in the application
 using a common Backbone interface.</p>
@@ -292,8 +289,7 @@ instance or constructor <code>options</code>.</p>
   // `add` method to "massage" the input data
   // (optional; `undefined` is the default)
   parse: &lt;function (value, options)&gt;,
-}
-</code></pre>
+}</code></pre>
             </div>
             
             <div class="content"><div class='highlight'><pre>  Backbone.mixinCompositeModel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prototype</span>) </span>{
