@@ -1,27 +1,10 @@
-sudo: false
 language: node_js
-cache:
-  directories:
-    - ~/.npm
 notifications:
   email: false
 node_js:
-  - '10'
-  - '8'
-  - '6'
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - libcairo2-dev
-      - libjpeg8-dev
-      - libpango1.0-dev
-      - libgif-dev
-      - build-essential
-      - g++-4.8
-env:
-  - CXX=g++-4.8
+  - node
+  - lts/*
+  - 8
 before_script:
   - npm install -g grunt-cli
 after_success:
