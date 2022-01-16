@@ -1,6 +1,6 @@
 {
   "name": "backbone.composite-model",
-  "version": "0.0.0-development",
+  "version": "1.0.3",
   "description": "Supports composite Backbone.Model objects",
   "homepage": "https://github.com/prantlf/backbone.composite-model#readme",
   "author": "Ferdinand Prantl <prantlf@gmail.com>",
@@ -14,25 +14,40 @@
     "backbone",
     "composite"
   ],
-  "dependencies": {
-    "backbone": ">=1.4.0",
-    "jquery": "^3.4.1",
-    "underscore": ">=1.9.1"
+  "peerDependencies": {
+    "backbone": "^1.4.0",
+    "jquery": "^3.6.0",
+    "underscore": "^1.13.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.6",
-    "docco": "^0.8.0",
-    "eslint": "^6.4.0",
-    "karma": "4.3.0",
-    "karma-coverage": "^2.0.1",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-qunit": "^4.0.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "docco": "^0.9.1",
+    "eslint": "^8.7.0",
+    "karma": "^6.3.11",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.1.0",
+    "karma-qunit": "^4.1.2",
     "karma-requirejs": "^1.1.0",
     "nomnoml-cli": "^2.0.0",
-    "phantomjs-prebuilt": "^2.1.16",
-    "qunit": "^2.9.2",
+    "qunit": "^2.17.2",
     "requirejs": "^2.3.6",
-    "uglify-js": "^3.6.0"
+    "uglify-js": "^3.14.5"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "failComment": false
+        }
+      ],
+      "@semantic-release/git"
+    ]
   },
   "engines": {
     "node": ">=6"
@@ -41,7 +56,7 @@
     "build": "uglifyjs backbone.composite-model.js --mangle --source-map --output backbone.composite-model.min.js",
     "doc": "nomnoml -i docs/file-system.nomnoml -o docs/file-system.png && nomnoml -i docs/slave-model.nomnoml -o docs/slave-model.png && nomnoml -i docs/slave-collection.nomnoml -o docs/slave-collection.png && docco backbone.composite-model.js",
     "test": "eslint backbone.composite-model.js test/*.js examples/file-system/*.js && karma start karma-global.conf.js  && karma start karma-amd.conf.js qunit -c backbone.composite-model.js -t test/tests.js",
-    "post_coverage": "cat test/coverage/lcov.info | coveralls"
+    "post_coverage": "cat test/coverage/lcov.info | npx codecov --disable=gcov"
   },
   "main": "backbone.composite-model.js",
   "files": [
