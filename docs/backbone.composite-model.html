@@ -24,8 +24,8 @@
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-1">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-1">&#x00a7;</a>
               </div>
               <p>Backbone.CompositeModel 0.1.7
 <a href="https://github.com/prantlf/backbone.composite-model">https://github.com/prantlf/backbone.composite-model</a></p>
@@ -43,8 +43,8 @@ composite configuration</p>
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-2">&#x00a7;</a>
               </div>
               <h2 id="example">Example</h2>
 
@@ -56,8 +56,8 @@ composite configuration</p>
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-3">&#x00a7;</a>
               </div>
               
             </div>
@@ -68,8 +68,8 @@ composite configuration</p>
         <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-4">&#x00a7;</a>
               </div>
               <p>Let’s have a versioned file-system model: folders which contain
 sub-folders and files, files consisting of file versions.  The REST
@@ -77,53 +77,59 @@ API resource <code>/files/:id</code> returns the following (simplified) response
 about a file:</p>
 <pre><code>{
   <span class="hljs-attr">id</span>: ...,                <span class="hljs-comment">// globally unique ID</span>
-  name: <span class="hljs-string">'...'</span>,            <span class="hljs-comment">// file display name</span>
-  parent_expanded: {...}, <span class="hljs-comment">// parent folder object</span>
-  versions: [...]         <span class="hljs-comment">// version object array</span>
-}</code></pre><p>Let’s declare the following (simplified) models and collections for them:</p>
-<pre><code><span class="hljs-keyword">var</span> FolderModel = Backbone.Model.extend({...});
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;...&#x27;</span>,            <span class="hljs-comment">// file display name</span>
+  <span class="hljs-attr">parent_expanded</span>: {...}, <span class="hljs-comment">// parent folder object</span>
+  <span class="hljs-attr">versions</span>: [...]         <span class="hljs-comment">// version object array</span>
+}
+</code></pre>
+<p>Let’s declare the following (simplified) models and collections for them:</p>
+<pre><code><span class="hljs-keyword">var</span> <span class="hljs-title class_">FolderModel</span> = <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span>.<span class="hljs-title function_">extend</span>({...});
 
-<span class="hljs-keyword">var</span> VersionCollection = Backbone.Collection.extend({...});
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">VersionCollection</span> = <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Collection</span>.<span class="hljs-title function_">extend</span>({...});
 
-<span class="hljs-keyword">var</span> FileModel = Backbone.Model.extend({...})
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">FileModel</span> = <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span>.<span class="hljs-title function_">extend</span>({...})
 
   <span class="hljs-comment">// Declare what attributes from the response back</span>
   <span class="hljs-comment">// up what child models and collection stored in</span>
   <span class="hljs-comment">// properties on the object instance</span>
-  composite: {
+  <span class="hljs-attr">composite</span>: {
     <span class="hljs-attr">parent_expanded</span>: {
-      <span class="hljs-attr">model</span>: FolderModel,
-      <span class="hljs-attr">property</span>: <span class="hljs-string">'parent'</span>
+      <span class="hljs-attr">model</span>: <span class="hljs-title class_">FolderModel</span>,
+      <span class="hljs-attr">property</span>: <span class="hljs-string">&#x27;parent&#x27;</span>
     },
-    <span class="hljs-attr">versions</span>: VersionCollection,
+    <span class="hljs-attr">versions</span>: <span class="hljs-title class_">VersionCollection</span>,
   },
 
   <span class="hljs-comment">// Override the constructor to see the name `FileModel`</span>
   <span class="hljs-comment">// in the debugger and to be able to initialize the</span>
   <span class="hljs-comment">// composite model</span>
-  <span class="hljs-keyword">constructor</span>: function FileModel(attributes, options) {
-    FileModel.__super__.constructor.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
-    <span class="hljs-keyword">this</span>,makeComposite(options);
+  <span class="hljs-attr">constructor</span>: <span class="hljs-keyword">function</span> <span class="hljs-title function_">FileModel</span>(<span class="hljs-params">attributes, options</span>) {
+    <span class="hljs-title class_">FileModel</span>.<span class="hljs-property">__super__</span>.<span class="hljs-property">constructor</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>);
+    <span class="hljs-variable language_">this</span>,<span class="hljs-title function_">makeComposite</span>(options);
   },
 
   <span class="hljs-comment">// Point to the resource representing the file</span>
   <span class="hljs-comment">// on the server</span>
-  urlRoot: <span class="hljs-string">'/files'</span>
+  <span class="hljs-attr">urlRoot</span>: <span class="hljs-string">&#x27;/files&#x27;</span>
 
 });
 
 <span class="hljs-comment">// Extend the function object prototype to become</span>
 <span class="hljs-comment">// a composite of child models and collections</span>
-Backbone.mixinCompositeModel(FileModel.prototype);</code></pre><p>This lets the <code>parent</code> and <code>versions</code> properties maintained automatically
+<span class="hljs-title class_">Backbone</span>.<span class="hljs-title function_">mixinCompositeModel</span>(<span class="hljs-title class_">FileModel</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);
+</code></pre>
+<p>This lets the <code>parent</code> and <code>versions</code> properties maintained automatically
 without an additional code.</p>
-<pre><code><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> FileModel({<span class="hljs-attr">id</span>: ...});
-file.fetch()
-    .done(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Name:'</span>, file.get(<span class="hljs-string">'name'</span>));
+<pre><code><span class="hljs-keyword">var</span> file = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileModel</span>({<span class="hljs-attr">id</span>: ...});
+file.<span class="hljs-title function_">fetch</span>()
+    .<span class="hljs-title function_">done</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Name:&#x27;</span>, file.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;name&#x27;</span>));
       <span class="hljs-comment">// This does not work.</span>
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Parent folder:'</span>, file.parent.get(<span class="hljs-string">'name'</span>));
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Version count:'</span>, file.versions.length);
-    });</code></pre><p>The <code>parent</code> object and the <code>versions</code> array are be accessible as
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Parent folder:&#x27;</span>, file.<span class="hljs-property">parent</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;name&#x27;</span>));
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Version count:&#x27;</span>, file.<span class="hljs-property">versions</span>.<span class="hljs-property">length</span>);
+    });
+</code></pre>
+<p>The <code>parent</code> object and the <code>versions</code> array are be accessible as
 <code>Backbone.Model</code> and <code>Backbone.Collection</code> to be able to pass them to
 other models and views and listen to their events in the application
 using a common Backbone interface.</p>
@@ -136,8 +142,8 @@ using a common Backbone interface.</p>
         <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-5">&#x00a7;</a>
               </div>
               <h2 id="module-factory">Module Factory</h2>
 
@@ -149,8 +155,8 @@ using a common Backbone interface.</p>
         <li id="section-6">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-6">&#x00a7;</a>
               </div>
               
             </div>
@@ -161,15 +167,15 @@ using a common Backbone interface.</p>
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-7">&#x00a7;</a>
               </div>
               <p>UMD wrapper to support multiple module dependency loaders</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root, factory</span>) </span>{
-<span class="hljs-meta">  'use strict'</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>(<span class="hljs-keyword">function</span> (<span class="hljs-params">root, factory</span>) {
+  <span class="hljs-string">&#x27;use strict&#x27;</span>;</pre></div></div>
             
         </li>
         
@@ -177,15 +183,15 @@ using a common Backbone interface.</p>
         <li id="section-8">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-8">&#x00a7;</a>
               </div>
               <p>Handle AMD modules (RequireJS)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">'function'</span> &amp;&amp; define.amd) {
-    define([<span class="hljs-string">'underscore'</span>, <span class="hljs-string">'backbone'</span>], factory);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">&#x27;function&#x27;</span> &amp;&amp; define.<span class="hljs-property">amd</span>) {
+    <span class="hljs-title function_">define</span>([<span class="hljs-string">&#x27;underscore&#x27;</span>, <span class="hljs-string">&#x27;backbone&#x27;</span>], factory);</pre></div></div>
             
         </li>
         
@@ -193,15 +199,15 @@ using a common Backbone interface.</p>
         <li id="section-9">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-9">&#x00a7;</a>
               </div>
               <p>Handle CommonJS modules (NodeJS)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> === <span class="hljs-string">'object'</span> &amp;&amp; <span class="hljs-built_in">module</span>.exports) {
-    <span class="hljs-built_in">module</span>.exports = factory(<span class="hljs-built_in">require</span>(<span class="hljs-string">'underscore'</span>), <span class="hljs-built_in">require</span>(<span class="hljs-string">'backbone'</span>));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-variable language_">module</span> === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>) {
+    <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">factory</span>(<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;underscore&#x27;</span>), <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;backbone&#x27;</span>));</pre></div></div>
             
         </li>
         
@@ -209,18 +215,18 @@ using a common Backbone interface.</p>
         <li id="section-10">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-10">&#x00a7;</a>
               </div>
               <p>Handle global variables setting modules (web browser alone)</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>  } <span class="hljs-keyword">else</span> {
-    root.returnExports = factory(root._, root.Backbone);
+    root.<span class="hljs-property">returnExports</span> = <span class="hljs-title function_">factory</span>(root.<span class="hljs-property">_</span>, root.<span class="hljs-property">Backbone</span>);
   }
-}(<span class="hljs-keyword">this</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, Backbone</span>) </span>{
-<span class="hljs-meta">  'use strict'</span>;</pre></div></div>
+}(<span class="hljs-variable language_">this</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">_, Backbone</span>) {
+  <span class="hljs-string">&#x27;use strict&#x27;</span>;</pre></div></div>
             
         </li>
         
@@ -228,8 +234,8 @@ using a common Backbone interface.</p>
         <li id="section-11">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-11">&#x00a7;</a>
               </div>
               <h2 id="mixin-function">Mixin Function</h2>
 
@@ -241,8 +247,8 @@ using a common Backbone interface.</p>
         <li id="section-12">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-12">&#x00a7;</a>
               </div>
               
             </div>
@@ -253,8 +259,8 @@ using a common Backbone interface.</p>
         <li id="section-13">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-13">&#x00a7;</a>
               </div>
               <p>Applied on a <code>Backbone.Model</code> prototype, extends it to support model
 composites made of child models and collections, which can be
@@ -286,17 +292,19 @@ instance or constructor <code>options</code>.</p>
   method: &lt;method name&gt;,
   // Function to call before the value is passed to
   // child model or collection constructor or `set` /
-  // `add` method to "massage" the input data
+  // `add` method to &quot;massage&quot; the input data
   // (optional; `undefined` is the default)
   parse: &lt;function (value, options)&gt;,
-}</code></pre>
+}
+</code></pre>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre>  Backbone.mixinCompositeModel = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prototype</span>) </span>{
-    <span class="hljs-keyword">var</span> originalSet = prototype.set,
-        originalToJSON = prototype.toJSON;
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">mixinCompositeModel</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">prototype</span>) {
+    <span class="hljs-keyword">var</span> originalSet = prototype.<span class="hljs-property">set</span>,
+        originalToJSON = prototype.<span class="hljs-property">toJSON</span>;
 
-    <span class="hljs-keyword">return</span> _.extend(prototype, {</pre></div></div>
+    <span class="hljs-keyword">return</span> _.<span class="hljs-title function_">extend</span>(prototype, {</pre></div></div>
             
         </li>
         
@@ -304,8 +312,8 @@ instance or constructor <code>options</code>.</p>
         <li id="section-14">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-14">&#x00a7;</a>
               </div>
               <h2 id="initialization-function">Initialization Function</h2>
 
@@ -317,8 +325,8 @@ instance or constructor <code>options</code>.</p>
         <li id="section-15">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-15">&#x00a7;</a>
               </div>
               
             </div>
@@ -329,8 +337,8 @@ instance or constructor <code>options</code>.</p>
         <li id="section-16">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-16">&#x00a7;</a>
               </div>
               <p>Initializes the composite model support; to be called from the
 <code>initialize</code> method or from the overridden constructor, after
@@ -338,7 +346,7 @@ the parent constructor has been called</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      makeComposite: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attr">makeComposite</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) {</pre></div></div>
             
         </li>
         
@@ -346,15 +354,15 @@ the parent constructor has been called</p>
         <li id="section-17">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-17">&#x00a7;</a>
               </div>
               <p>Mark the object creation scenario for the _updateComposite below</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        options = _.extend({<span class="hljs-attr">create</span>: <span class="hljs-literal">true</span>}, options);
-        <span class="hljs-keyword">this</span>._compositeMap = <span class="hljs-keyword">this</span>._createCompositeMap(options);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        options = _.<span class="hljs-title function_">extend</span>({<span class="hljs-attr">create</span>: <span class="hljs-literal">true</span>}, options);
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_compositeMap</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_createCompositeMap</span>(options);</pre></div></div>
             
         </li>
         
@@ -362,8 +370,8 @@ the parent constructor has been called</p>
         <li id="section-18">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-18">&#x00a7;</a>
               </div>
               <p>Update properties explicitly, because the <code>set</code> method with
 the initial attributes of the model is called in the parent
@@ -372,8 +380,8 @@ called here, thus the composite extension could not apply yet</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">this</span>._updateComposite(<span class="hljs-keyword">this</span>.attributes, options);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_updateComposite</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">attributes</span>, options);
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
       },</pre></div></div>
             
         </li>
@@ -382,8 +390,8 @@ called here, thus the composite extension could not apply yet</p>
         <li id="section-19">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-19">&#x00a7;</a>
               </div>
               <h2 id="overridden-functions">Overridden Functions</h2>
 
@@ -395,8 +403,8 @@ called here, thus the composite extension could not apply yet</p>
         <li id="section-20">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-20">&#x00a7;</a>
               </div>
               
             </div>
@@ -407,8 +415,8 @@ called here, thus the composite extension could not apply yet</p>
         <li id="section-21">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-21">&#x00a7;</a>
               </div>
               <p>Overrides the <code>Backbone.Model:set()</code> method to ensure that the
 nested attribute values will be propagated to the child models
@@ -416,7 +424,7 @@ and collections of this composite</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">set</span>: function (key, value, options) {
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">key, value, options</span>) {
         <span class="hljs-keyword">var</span> attributes;</pre></div></div>
             
         </li>
@@ -425,15 +433,15 @@ and collections of this composite</p>
         <li id="section-22">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-22">&#x00a7;</a>
               </div>
               <p>Do nothing if nought has been asked for</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (key == <span class="hljs-literal">null</span>) {
-          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+          <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
         }</pre></div></div>
             
         </li>
@@ -442,15 +450,15 @@ and collections of this composite</p>
         <li id="section-23">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-23">&#x00a7;</a>
               </div>
               <p>Normalize the input parameters to become two object literals:
 handle both <code>&#39;key&#39;, value</code> and <code>{key: value}</code> -style arguments</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> key === <span class="hljs-string">'object'</span>) {
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> key === <span class="hljs-string">&#x27;object&#x27;</span>) {
           attributes = key;
           options = value;
         } <span class="hljs-keyword">else</span> {
@@ -464,14 +472,14 @@ handle both <code>&#39;key&#39;, value</code> and <code>{key: value}</code> -sty
         <li id="section-24">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-24">&#x00a7;</a>
               </div>
               <p>Set the common attributes and check the result first</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> result = originalSet.call(<span class="hljs-keyword">this</span>, attributes, options);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> result = originalSet.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, attributes, options);</pre></div></div>
             
         </li>
         
@@ -479,16 +487,16 @@ handle both <code>&#39;key&#39;, value</code> and <code>{key: value}</code> -sty
         <li id="section-25">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-25">&#x00a7;</a>
               </div>
               <p>Update the child models and collections if the composite
 map has been initialized (after the constructor has finished)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (result &amp;&amp; <span class="hljs-keyword">this</span>._compositeMap) {
-          <span class="hljs-keyword">this</span>._updateComposite(attributes, options);
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (result &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">_compositeMap</span>) {
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_updateComposite</span>(attributes, options);
         }</pre></div></div>
             
         </li>
@@ -497,8 +505,8 @@ map has been initialized (after the constructor has finished)</p>
         <li id="section-26">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-26">&#x00a7;</a>
               </div>
               <p>Return the same result as the original <code>set</code> method</p>
 
@@ -513,16 +521,16 @@ map has been initialized (after the constructor has finished)</p>
         <li id="section-27">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-27">&#x00a7;</a>
               </div>
               <p>Overrides the <code>Backbone.Model:toJSON()</code> method to ensure that the
 up-to-date nested attribute values will be present in the result</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      toJSON: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
-        <span class="hljs-keyword">var</span> result = originalToJSON.call(<span class="hljs-keyword">this</span>, options);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attr">toJSON</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) {
+        <span class="hljs-keyword">var</span> result = originalToJSON.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, options);</pre></div></div>
             
         </li>
         
@@ -530,8 +538,8 @@ up-to-date nested attribute values will be present in the result</p>
         <li id="section-28">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-28">&#x00a7;</a>
               </div>
               <p>Update keys maintained by child models and collections only if
 the composite map has been initialized (after the constructor
@@ -539,7 +547,7 @@ has finished)</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._compositeMap) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">_compositeMap</span>) {</pre></div></div>
             
         </li>
         
@@ -547,14 +555,14 @@ has finished)</p>
         <li id="section-29">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-29">&#x00a7;</a>
               </div>
               <p>Process only attributes listed in the composite map</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          _.each(<span class="hljs-keyword">this</span>._compositeMap, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">composite, key</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>          _.<span class="hljs-title function_">each</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_compositeMap</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">composite, key</span>) {</pre></div></div>
             
         </li>
         
@@ -562,14 +570,14 @@ has finished)</p>
         <li id="section-30">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-30">&#x00a7;</a>
               </div>
               <p>Get the nested model or collection for the composite item</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> child = <span class="hljs-keyword">this</span>[composite.property];</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> child = <span class="hljs-variable language_">this</span>[composite.<span class="hljs-property">property</span>];</pre></div></div>
             
         </li>
         
@@ -577,8 +585,8 @@ has finished)</p>
         <li id="section-31">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-31">&#x00a7;</a>
               </div>
               <p>If the nested model or collection is available, propagate
 its current content to the resulting JSON</p>
@@ -586,9 +594,9 @@ its current content to the resulting JSON</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (child) {
-              result[key] = child.toJSON();
+              result[key] = child.<span class="hljs-title function_">toJSON</span>();
             }
-          }, <span class="hljs-keyword">this</span>);
+          }, <span class="hljs-variable language_">this</span>);
         }
         <span class="hljs-keyword">return</span> result;
       },</pre></div></div>
@@ -599,8 +607,8 @@ its current content to the resulting JSON</p>
         <li id="section-32">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-32">&#x00a7;</a>
               </div>
               <h2 id="private-functions">Private Functions</h2>
 
@@ -612,8 +620,8 @@ its current content to the resulting JSON</p>
         <li id="section-33">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-33">&#x00a7;</a>
               </div>
               
             </div>
@@ -624,15 +632,15 @@ its current content to the resulting JSON</p>
         <li id="section-34">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-34">&#x00a7;</a>
               </div>
               <p>Merges prototype.composite and options.composite and normalizes
 the child model or collection configuration</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      _createCompositeMap: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attr">_createCompositeMap</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">options</span>) {</pre></div></div>
             
         </li>
         
@@ -640,25 +648,25 @@ the child model or collection configuration</p>
         <li id="section-35">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-35">&#x00a7;</a>
               </div>
               <p>Allow specifying the composite property as a function returning
 the actual configuration object</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> thisComposite = <span class="hljs-keyword">this</span>.composite,
-            optionsComposite = options.composite;
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> thisComposite === <span class="hljs-string">'function'</span>) {
-          thisComposite = thisComposite.call(<span class="hljs-keyword">this</span>, options);
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> thisComposite = <span class="hljs-variable language_">this</span>.<span class="hljs-property">composite</span>,
+            optionsComposite = options.<span class="hljs-property">composite</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> thisComposite === <span class="hljs-string">&#x27;function&#x27;</span>) {
+          thisComposite = thisComposite.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, options);
         }
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> optionsComposite === <span class="hljs-string">'function'</span>) {
-          optionsComposite = optionsComposite.call(<span class="hljs-keyword">this</span>, options);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> optionsComposite === <span class="hljs-string">&#x27;function&#x27;</span>) {
+          optionsComposite = optionsComposite.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, options);
         }
-        <span class="hljs-keyword">if</span> (thisComposite &amp;&amp; <span class="hljs-keyword">typeof</span> thisComposite !== <span class="hljs-string">'object'</span> ||
-            optionsComposite &amp;&amp; <span class="hljs-keyword">typeof</span> optionsComposite !== <span class="hljs-string">'object'</span>) {
-          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid composite configuration'</span>);
+        <span class="hljs-keyword">if</span> (thisComposite &amp;&amp; <span class="hljs-keyword">typeof</span> thisComposite !== <span class="hljs-string">&#x27;object&#x27;</span> ||
+            optionsComposite &amp;&amp; <span class="hljs-keyword">typeof</span> optionsComposite !== <span class="hljs-string">&#x27;object&#x27;</span>) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid composite configuration&#x27;</span>);
         }</pre></div></div>
             
         </li>
@@ -667,16 +675,16 @@ the actual configuration object</p>
         <li id="section-36">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-36">&#x00a7;</a>
               </div>
               <p>Allow the caller to specify additional or override existing
 attribute rules defined in the prototype or in the instance</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> composite = _.extend({}, thisComposite, optionsComposite);
-        <span class="hljs-keyword">return</span> _.reduce(composite, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">result, model, attribute</span>) </span>{
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> composite = _.<span class="hljs-title function_">extend</span>({}, thisComposite, optionsComposite);
+        <span class="hljs-keyword">return</span> _.<span class="hljs-title function_">reduce</span>(composite, <span class="hljs-keyword">function</span> (<span class="hljs-params">result, model, attribute</span>) {
           <span class="hljs-keyword">var</span> property, parse, method;</pre></div></div>
             
         </li>
@@ -685,16 +693,16 @@ attribute rules defined in the prototype or in the instance</p>
         <li id="section-37">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-37">&#x00a7;</a>
               </div>
               <p>Just model or collection function object can be used for
 convenience</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (model.prototype <span class="hljs-keyword">instanceof</span> Backbone.Model ||
-              model.prototype <span class="hljs-keyword">instanceof</span> Backbone.Collection) {
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span> ||
+              model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Collection</span>) {
             property = attribute;</pre></div></div>
             
         </li>
@@ -703,8 +711,8 @@ convenience</p>
         <li id="section-38">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-38">&#x00a7;</a>
               </div>
               <p>Otherwise the child model or collection object descriptor
 should be an object literal with configuration properties</p>
@@ -712,8 +720,8 @@ should be an object literal with configuration properties</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>          } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> model !== <span class="hljs-string">'object'</span>) {
-              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid composite child descriptor'</span>);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> model !== <span class="hljs-string">&#x27;object&#x27;</span>) {
+              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid composite child descriptor&#x27;</span>);
             }</pre></div></div>
             
         </li>
@@ -722,14 +730,14 @@ should be an object literal with configuration properties</p>
         <li id="section-39">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-39">&#x00a7;</a>
               </div>
               <p>Attribute name is the default for the property name</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            property = model.property || attribute;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            property = model.<span class="hljs-property">property</span> || attribute;</pre></div></div>
             
         </li>
         
@@ -737,19 +745,19 @@ should be an object literal with configuration properties</p>
         <li id="section-40">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-40">&#x00a7;</a>
               </div>
               <p>Make sure that the extra data parsing function is not set
 or is a valid function</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            parse = model.parse;
-            <span class="hljs-keyword">if</span> (parse != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> parse !== <span class="hljs-string">'function'</span>) {
-              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid child model data parse function'</span>);
+            <div class="content"><div class='highlight'><pre>            parse = model.<span class="hljs-property">parse</span>;
+            <span class="hljs-keyword">if</span> (parse != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">typeof</span> parse !== <span class="hljs-string">&#x27;function&#x27;</span>) {
+              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid child model data parse function&#x27;</span>);
             }
-            method = model.method;</pre></div></div>
+            method = model.<span class="hljs-property">method</span>;</pre></div></div>
             
         </li>
         
@@ -757,17 +765,17 @@ or is a valid function</p>
         <li id="section-41">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-41">&#x00a7;</a>
               </div>
               <p>Make sure that the child model or collection type is valid</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            model = model.type;
-            <span class="hljs-keyword">if</span> (!(model.prototype <span class="hljs-keyword">instanceof</span> Backbone.Model ||
-                  model.prototype <span class="hljs-keyword">instanceof</span> Backbone.Collection)) {
-              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid composite child model'</span>);
+            <div class="content"><div class='highlight'><pre>            model = model.<span class="hljs-property">type</span>;
+            <span class="hljs-keyword">if</span> (!(model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span> ||
+                  model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Collection</span>)) {
+              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid composite child model&#x27;</span>);
             }
           }</pre></div></div>
             
@@ -777,8 +785,8 @@ or is a valid function</p>
         <li id="section-42">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-42">&#x00a7;</a>
               </div>
               <p>Avoid replacing an existing prototype member with the child
 model or collection instance</p>
@@ -786,7 +794,7 @@ model or collection instance</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (prototype[property]) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Property conflict in the composite prototype'</span>);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Property conflict in the composite prototype&#x27;</span>);
           }</pre></div></div>
             
         </li>
@@ -795,15 +803,15 @@ model or collection instance</p>
         <li id="section-43">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-43">&#x00a7;</a>
               </div>
               <p>Use the default data updating method if not specified</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (!method) {
-            method = model.prototype <span class="hljs-keyword">instanceof</span> Backbone.Model ? <span class="hljs-string">'set'</span> : <span class="hljs-string">'add'</span>;
+            method = model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span> ? <span class="hljs-string">&#x27;set&#x27;</span> : <span class="hljs-string">&#x27;add&#x27;</span>;
           }</pre></div></div>
             
         </li>
@@ -812,16 +820,16 @@ model or collection instance</p>
         <li id="section-44">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-44">&#x00a7;</a>
               </div>
               <p>Make sure that the data updating method exists in the child
 model or collection prototype</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (!model.prototype[method]) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid chidl model data updating method'</span>);
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (!model.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>[method]) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid chidl model data updating method&#x27;</span>);
           }</pre></div></div>
             
         </li>
@@ -830,8 +838,8 @@ model or collection prototype</p>
         <li id="section-45">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-45">&#x00a7;</a>
               </div>
               <p>Make every map entry look consistent</p>
 
@@ -853,8 +861,8 @@ model or collection prototype</p>
         <li id="section-46">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-46">&#x00a7;</a>
               </div>
               <p>Checks if the changed attributes contained a key, which backs up
 a child model or collection and updates the child object
@@ -862,7 +870,7 @@ accordingly</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      _updateComposite: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">attributes, options</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-attr">_updateComposite</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">attributes, options</span>) {</pre></div></div>
             
         </li>
         
@@ -870,16 +878,16 @@ accordingly</p>
         <li id="section-47">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-47">&#x00a7;</a>
               </div>
               <p>Creates a new instance of the child model or collection</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create</span>(<span class="hljs-params">composite, parameters</span>) </span>{
-          <span class="hljs-keyword">var</span> createOptions = _.extend({}, composite.options, options);
-          <span class="hljs-keyword">this</span>[composite.property] = <span class="hljs-keyword">new</span> composite.model(parameters,
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">function</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">composite, parameters</span>) {
+          <span class="hljs-keyword">var</span> createOptions = _.<span class="hljs-title function_">extend</span>({}, composite.<span class="hljs-property">options</span>, options);
+          <span class="hljs-variable language_">this</span>[composite.<span class="hljs-property">property</span>] = <span class="hljs-keyword">new</span> composite.<span class="hljs-title function_">model</span>(parameters,
             createOptions);
         }</pre></div></div>
             
@@ -889,16 +897,16 @@ accordingly</p>
         <li id="section-48">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-48">&#x00a7;</a>
               </div>
               <p>Ensures that the property with the child model or collection
 exists and clears it if</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createOrClear</span>(<span class="hljs-params">composite</span>) </span>{
-          <span class="hljs-keyword">var</span> child = <span class="hljs-keyword">this</span>[composite.property];
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">function</span> <span class="hljs-title function_">createOrClear</span>(<span class="hljs-params">composite</span>) {
+          <span class="hljs-keyword">var</span> child = <span class="hljs-variable language_">this</span>[composite.<span class="hljs-property">property</span>];
           <span class="hljs-keyword">if</span> (child) {</pre></div></div>
             
         </li>
@@ -907,8 +915,8 @@ exists and clears it if</p>
         <li id="section-49">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-49">&#x00a7;</a>
               </div>
               <p>Clearing an attribute on the main model should clear the
 child model or collection; requesting the <code>parse</code> option
@@ -920,14 +928,14 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.unset || options.parse &amp;&amp; !options.validate) {
-              <span class="hljs-keyword">if</span> (child <span class="hljs-keyword">instanceof</span> Backbone.Model) {
-                child.clear(options);
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.<span class="hljs-property">unset</span> || options.<span class="hljs-property">parse</span> &amp;&amp; !options.<span class="hljs-property">validate</span>) {
+              <span class="hljs-keyword">if</span> (child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span>) {
+                child.<span class="hljs-title function_">clear</span>(options);
               } <span class="hljs-keyword">else</span> {
-                child.reset(<span class="hljs-literal">undefined</span>, options);
+                child.<span class="hljs-title function_">reset</span>(<span class="hljs-literal">undefined</span>, options);
               }
             }
-          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options.create) {</pre></div></div>
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options.<span class="hljs-property">create</span>) {</pre></div></div>
             
         </li>
         
@@ -935,8 +943,8 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
         <li id="section-50">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-50">&#x00a7;</a>
               </div>
               <p>If called from the constructor or with an undefined or with
 an explicit null, force  creation of empty child models and
@@ -944,7 +952,7 @@ collections, at least</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            create.call(<span class="hljs-keyword">this</span>, composite);
+            <div class="content"><div class='highlight'><pre>            create.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, composite);
           }
         }</pre></div></div>
             
@@ -954,14 +962,14 @@ collections, at least</p>
         <li id="section-51">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-51">&#x00a7;</a>
               </div>
               <p>Propagates the attribute change to the child model ort collection</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">populate</span>(<span class="hljs-params">composite, value</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">function</span> <span class="hljs-title function_">populate</span>(<span class="hljs-params">composite, value</span>) {</pre></div></div>
             
         </li>
         
@@ -969,16 +977,16 @@ collections, at least</p>
         <li id="section-52">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-52">&#x00a7;</a>
               </div>
               <p>Pre-process the attributes or models before they are
 propagated to the child object</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (composite.parse) {
-            value = composite.parse.call(<span class="hljs-keyword">this</span>, value, options);
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (composite.<span class="hljs-property">parse</span>) {
+            value = composite.<span class="hljs-property">parse</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, value, options);
           }</pre></div></div>
             
         </li>
@@ -987,14 +995,14 @@ propagated to the child object</p>
         <li id="section-53">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-53">&#x00a7;</a>
               </div>
               <p>If called from the constructor, the property will not exist</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">var</span> child = <span class="hljs-keyword">this</span>[composite.property];
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">var</span> child = <span class="hljs-variable language_">this</span>[composite.<span class="hljs-property">property</span>];
           <span class="hljs-keyword">if</span> (child) {</pre></div></div>
             
         </li>
@@ -1003,8 +1011,8 @@ propagated to the child object</p>
         <li id="section-54">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-54">&#x00a7;</a>
               </div>
               <p>When the main model is re-fetched, the child models or
 collections should be reset; requesting the <code>parse</code> option
@@ -1015,20 +1023,20 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.parse &amp;&amp; !options.validate) {
-              <span class="hljs-keyword">if</span> (child <span class="hljs-keyword">instanceof</span> Backbone.Model) {
-                <span class="hljs-keyword">var</span> missing = _.omit(child.attributes, _.keys(value));
-                child.set(missing, {
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (options.<span class="hljs-property">parse</span> &amp;&amp; !options.<span class="hljs-property">validate</span>) {
+              <span class="hljs-keyword">if</span> (child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">Model</span>) {
+                <span class="hljs-keyword">var</span> missing = _.<span class="hljs-title function_">omit</span>(child.<span class="hljs-property">attributes</span>, _.<span class="hljs-title function_">keys</span>(value));
+                child.<span class="hljs-title function_">set</span>(missing, {
                   <span class="hljs-attr">unset</span>: <span class="hljs-literal">true</span>,
                   <span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>
                 });
               } <span class="hljs-keyword">else</span> {
-                child.reset(<span class="hljs-literal">undefined</span>, {<span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>});
+                child.<span class="hljs-title function_">reset</span>(<span class="hljs-literal">undefined</span>, {<span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>});
               }
             }
-            child[composite.method](value, options);
+            child[composite.<span class="hljs-property">method</span>](value, options);
           } <span class="hljs-keyword">else</span> {
-            create.call(<span class="hljs-keyword">this</span>, composite, value);
+            create.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, composite, value);
           }
         }</pre></div></div>
             
@@ -1038,14 +1046,14 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
         <li id="section-55">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-55">&#x00a7;</a>
               </div>
               <p>Process only attributes listed in the composite map</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        _.each(<span class="hljs-keyword">this</span>._compositeMap, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">composite, key</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        _.<span class="hljs-title function_">each</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_compositeMap</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">composite, key</span>) {</pre></div></div>
             
         </li>
         
@@ -1053,20 +1061,20 @@ TODO: How to handle <code>save</code> with suppressed validation?</p>
         <li id="section-56">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-56">&#x00a7;</a>
               </div>
               <p>Leave the child model or collection intact if the attributes
 do not contain its key</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (_.has(attributes, key)) {
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-keyword">if</span> (_.<span class="hljs-title function_">has</span>(attributes, key)) {
             <span class="hljs-keyword">var</span> value = attributes[key];
             <span class="hljs-keyword">if</span> (value != <span class="hljs-literal">null</span>) {
-              populate.call(<span class="hljs-keyword">this</span>, composite, value);
+              populate.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, composite, value);
             } <span class="hljs-keyword">else</span> {
-              createOrClear.call(<span class="hljs-keyword">this</span>, composite);
+              createOrClear.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, composite);
             }
           } <span class="hljs-keyword">else</span> {</pre></div></div>
             
@@ -1076,17 +1084,17 @@ do not contain its key</p>
         <li id="section-57">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-57">&#x00a7;</a>
               </div>
               <p>If called from the constructor without attributes, force
 creation of empty child models and collections, at least</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            createOrClear.call(<span class="hljs-keyword">this</span>, composite);
+            <div class="content"><div class='highlight'><pre>            createOrClear.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, composite);
           }
-        }, <span class="hljs-keyword">this</span>);
+        }, <span class="hljs-variable language_">this</span>);
       }
 
     });
@@ -1099,15 +1107,15 @@ creation of empty child models and collections, at least</p>
         <li id="section-58">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+              <div class="sswrap ">
+                <a class="ss" href="#section-58">&#x00a7;</a>
               </div>
               <p>Export the function to apply the mixin to a prototype either as a result
 of this module callback or as a property on the <code>Backbone</code> object</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> Backbone.mixinCompositeModel;
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Backbone</span>.<span class="hljs-property">mixinCompositeModel</span>;
 
 }));</pre></div></div>
             
