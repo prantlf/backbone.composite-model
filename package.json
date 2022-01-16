@@ -1,6 +1,6 @@
 {
   "name": "backbone.composite-model",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Supports composite Backbone.Model objects",
   "homepage": "https://github.com/prantlf/backbone.composite-model#readme",
   "author": "Ferdinand Prantl <prantlf@gmail.com>",

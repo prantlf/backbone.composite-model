@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/prantlf/backbone.composite-model/compare/v1.0.3...v1.0.4) (2022-01-16)
+
+
+### Bug Fixes
+
+* Rebuild the output with upgraded dependencies ([768cd49](https://github.com/prantlf/backbone.composite-model/commit/768cd4953a27ba4468cf51e0b235d4764f93f8b1))
+
 * 2018-04-27   v1.0.0   Dropped support of Node.js 4
 * 2017-04-16   v0.1.7   Fix documentation
 * 2017-04-16   v0.1.6   Override toJSON method to get up-to-date content
