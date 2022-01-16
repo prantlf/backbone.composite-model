@@ -1,14 +1,10 @@
 # backbone.composite-model
-[![NPM version](https://badge.fury.io/js/backbone.composite-model.png)](http://badge.fury.io/js/backbone.composite-model)
-![Bower version](https://img.shields.io/bower/v/backbone.composite-model.svg)
-[![Build Status](https://travis-ci.org/prantlf/backbone.composite-model.png)](https://travis-ci.org/prantlf/backbone.composite-model)
-[![Coverage Status](https://coveralls.io/repos/prantlf/backbone.composite-model/badge.svg)](https://coveralls.io/github/prantlf/backbone.composite-model)
-[![Dependency Status](https://david-dm.org/prantlf/backbone.composite-model.svg)](https://david-dm.org/prantlf/backbone.composite-model)
-[![devDependency Status](https://david-dm.org/prantlf/backbone.composite-model/dev-status.svg)](https://david-dm.org/prantlf/backbone.composite-model#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/prantlf/backbone.composite-model/badges/gpa.svg)](https://codeclimate.com/github/prantlf/backbone.composite-model)
-[![Codacy Badge](https://www.codacy.com/project/badge/f3896e8dfa5342b8add12d50390edfcd)](https://www.codacy.com/public/prantlf/backbone.composite-model)
 
-[![NPM Downloads](https://nodei.co/npm/backbone.composite-model.png?downloads=true&stars=true)](https://www.npmjs.com/package/backbone.composite-model)
+[![Latest version](https://img.shields.io/npm/v/backbone.composite-model)](https://www.npmjs.com/package/backbone.composite-model)
+![Bower version](https://img.shields.io/bower/v/backbone.composite-model.svg)
+[![Dependency status](https://img.shields.io/librariesio/release/npm/backbone.composite-model)](https://www.npmjs.com/package/backbone.composite-model)
+[![Test code coverage](https://codecov.io/gh/prantlf/backbone.composite-model/branch/master/graph/badge.svg?token=8itqsA2HVj)](https://codecov.io/gh/prantlf/backbone.composite-model)
+[![Code Climate](https://codeclimate.com/github/prantlf/backbone.composite-model/badges/gpa.svg)](https://codeclimate.com/github/prantlf/backbone.composite-model)
 
 Supports composite [`Backbone.Model`] objects which represent a "master"
 model containing "slave" models or collections maintained automatically
@@ -397,23 +393,9 @@ git commit -a
 git push origin <branch name>
 ```
 
-## Release History
-
- * 2018-04-27   v1.0.0   Dropped support of Node.js 4
- * 2017-04-16   v0.1.7   Fix documentation
- * 2017-04-16   v0.1.6   Override toJSON method to get up-to-date content
-                         of all nested models and collections
- * 2017-04-16   v0.1.5   Update dependencies
- * 2016-08-26   v0.1.4   Update dependencies
- * 2016-01-09   v0.1.3   Update dependencies and copyright year,
-                         bump version number
- * 2015-10-24   v0.1.2   Fix embedded images on the README page
- * 2015-08-14   v0.1.1   Fix documentation and Travis CI build
- * 2015-08-14   v0.1.0   Initial release
-
 ## License
 
-Copyright (c) 2015-2019 Ferdinand Prantl
+Copyright (c) 2015-2022 Ferdinand Prantl
 
 Licensed under the MIT license.
 
